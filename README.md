@@ -59,3 +59,10 @@ This will run any build tasks required for deploy
 
 ```make release```
 This will build and package a zip file for the plugin that can be uploaded to a WordPress instance
+
+### Brendan's Assumptions/Notes
+- I'm planning to adhere to the style and architecture of the existing boilerplate code as closely as possible e.g.
+  - Primarily using static functions in Classes.
+  - Sticking to wordpress naming conventions instead of adhering to PSR-12.
+- I'm going to add metaboxes to handle editing the custom header, text, button, and image fields on the custom promotion post type.
+- I'm assuming that the button field on a promotion is for the button text. Also that clicking on the button will take the user to the default post page for that particular promotion

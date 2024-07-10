@@ -133,6 +133,7 @@ class Plugin {
    * Includes.
    */
   public function includes() {
+    PostTypes::init();
     Blocks::init();
   }
 
