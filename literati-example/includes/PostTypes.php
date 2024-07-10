@@ -60,15 +60,15 @@ class PostTypes
         <?php wp_nonce_field( basename( __FILE__ ), 'literati_promotion_data_nonce' ); ?>
 
         <p>
-            <label for="literati-promotion-header"><?php _e( "Add a header for your promotion"); ?></label>
+            <label for="literati-promotion-header"><?php _e( "Header"); ?></label>
             <br />
-            <input class="widefat" type="text" name="literati-promotion-header" id="literati-promotion-header" value="<?php echo esc_attr( get_post_meta( $post->ID, 'literati_promotion_header', true ) ); ?>" size="30" />
-            <label for="literati-promotion-header"><?php _e( "Add text for your promotion"); ?></label>
+            <input class="widefat" type="text" name="literati-promotion-header" id="literati-promotion-header" value="<?php echo esc_attr( get_post_meta( $post->ID, '_literati_promotion_header', true ) ); ?>" size="30" />
+            <label for="literati-promotion-header"><?php _e( "Text"); ?></label>
             <br />
-            <textarea class="widefat" type="text" name="literati-promotion-text" id="literati-promotion-text" value="<?php echo esc_attr( get_post_meta( $post->ID, 'literati_promotion_text', true ) ); ?>" size="30" ></textarea>
-            <label for="literati-promotion-header"><?php _e( "Add button text for your promotion"); ?></label>
+            <textarea class="widefat" type="text" name="literati-promotion-text" id="literati-promotion-text" rows="5"><?php echo esc_attr( get_post_meta( $post->ID, '_literati_promotion_text', true ) ); ?></textarea>
+            <label for="literati-promotion-header"><?php _e( "Button"); ?></label>
             <br />
-            <input class="widefat" type="text" name="literati-promotion-button" id="literati-promotion-button" value="<?php echo esc_attr( get_post_meta( $post->ID, 'literati_promotion_button', true ) ); ?>" size="30" />
+            <input class="widefat" type="text" name="literati-promotion-button" id="literati-promotion-button" value="<?php echo esc_attr( get_post_meta( $post->ID, '_literati_promotion_button', true ) ); ?>" size="30" />
         </p>
         <?php
     }
@@ -86,29 +86,28 @@ class PostTypes
         if ( !current_user_can( $post_type->cap->edit_post, $post_id ) ) {
 	        return $post_id;
         }
-        //save header data
-        self::handle_promotion_data('literati_promotion_header', $_POST['literati-promotion-header'], $post_id);
+        //save promotion data
+        self::handle_promotion_data('_literati_promotion_header', sanitize_text_field($_POST['literati-promotion-header']), $post_id);
+		self::handle_promotion_data('_literati_promotion_text', sanitize_textarea_field($_POST['literati-promotion-text']), $post_id);
+		self::handle_promotion_data('_literati_promotion_button', sanitize_text_field($_POST['literati-promotion-button']), $post_id);
 	}
     public static function handle_promotion_data($meta_key, $new_value, $post_id) {
-        //sanitize new value
-        $sanitized_value =( $new_value );
-
         //get existing metadata value
         $meta_value = get_post_meta( $post_id, $meta_key, true );
 
         //handle adding new value
-        if ( $sanitized_value && '' == $meta_value ) {
-            add_post_meta( $post_id, $meta_key, $sanitized_value, true );
+        if ( $new_value && '' == $meta_value ) {
+            add_post_meta( $post_id, $meta_key, $new_value, true );
         }
 
         //handle updating value
-        elseif ( $sanitized_value && $sanitized_value != $meta_value ) {
-		    update_post_meta( $post_id, $meta_key, $sanitized_value );
+        elseif ( $new_value && $new_value != $meta_value ) {
+		    update_post_meta( $post_id, $meta_key, $new_value );
 	    }
 
 	    //handle deleting value
-        elseif ( '' == $sanitized_value && $meta_value ) {
-		    delete_post_meta( $post_id, $meta_key, $meta_value );
+        elseif ( '' == $new_value && $meta_value ) {
+		    delete_post_meta( $post_id, $meta_key );
 	    }
     }
 }

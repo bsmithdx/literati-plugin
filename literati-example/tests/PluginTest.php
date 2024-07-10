@@ -3,6 +3,7 @@
 namespace Literati\Example\Tests;
 
 use Literati\Example\Plugin;
+use Literati\Example\PostTypes;
 use WP_Mock\Tools\TestCase as TestCase;
 use WP_Mock;
 
