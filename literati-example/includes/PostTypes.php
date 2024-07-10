@@ -20,20 +20,21 @@ class PostTypes
   public static function register_promotions(): void
   {
       register_post_type( 'literati_promotion',
-          [
-                  'labels' =>
-                      [
-                              'name' => _x('Promotions', 'Post type general name', 'textdomain'),
-                              'singular_name' => _x('Promotion', 'Post type singular name', 'textdomain'),
-                              'menu_name'             => _x( 'Promotions', 'Admin Menu text', 'textdomain' ),
-                              'name_admin_bar'        => _x( 'Promotion', 'Add New on Toolbar', 'textdomain' ),
-                              'add_new'               => __( 'Add New', 'textdomain' ),
-                              'add_new_item'          => __( 'Add New Promotion', 'textdomain' ),
-                              'new_item'              => __( 'New Promotion', 'textdomain' ),
-                              'edit_item'             => __( 'Edit Promotion', 'textdomain' ),
-                  ],
-                  'public' => true,
-            'has_archive' => true,
+        [
+                'labels' =>
+                  [
+                          'name'                => _x('Promotions', 'Post type general name', 'textdomain'),
+                          'singular_name'       => _x('Promotion', 'Post type singular name', 'textdomain'),
+                          'menu_name'           => _x( 'Promotions', 'Admin Menu text', 'textdomain' ),
+                          'name_admin_bar'      => _x( 'Promotion', 'Add New on Toolbar', 'textdomain' ),
+                          'add_new'             => __( 'Add New', 'textdomain' ),
+                          'add_new_item'        => __( 'Add New Promotion', 'textdomain' ),
+                          'new_item'            => __( 'New Promotion', 'textdomain' ),
+                          'edit_item'           => __( 'Edit Promotion', 'textdomain' ),
+                    ],
+                'public' => true,
+                'has_archive' => true,
+                'supports' => ['title', 'editor', 'thumbnail'],
             ]
     );
   }

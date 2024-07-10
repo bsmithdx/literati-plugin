@@ -65,4 +65,5 @@ This will build and package a zip file for the plugin that can be uploaded to a 
   - Primarily using static functions in Classes.
   - Sticking to wordpress naming conventions instead of adhering to PSR-12.
 - I'm going to add metaboxes to handle editing the custom header, text, button, and image fields on the custom promotion post type.
-- I'm assuming that the button field on a promotion is for the button text. Also that clicking on the button will take the user to the default post page for that particular promotion
+- I'm assuming that the button field on a promotion is for the button text. Also that clicking on the button will take the user to the default post page for that particular promotion.
+- I'm going to use the featured image on the promotion post type to handle the required image field.
