@@ -34,7 +34,11 @@ class PostTypes
                     ],
                 'public' => true,
                 'has_archive' => true,
-                'supports' => ['title', 'editor', 'thumbnail'],
+                'supports' => [
+                    'title',
+                    'editor',
+                    'thumbnail',
+                ],
             ]
     );
   }

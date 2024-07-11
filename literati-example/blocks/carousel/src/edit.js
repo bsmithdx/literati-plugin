@@ -11,7 +11,7 @@ import { __ } from '@wordpress/i18n';
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
-import { useBlockProps } from '@wordpress/block-editor';
+import { InspectorControls, useBlockProps } from '@wordpress/block-editor';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -21,6 +21,9 @@ import { useBlockProps } from '@wordpress/block-editor';
  */
 import './editor.scss';
 
+import { PanelBody, __experimentalNumberControl as NumberControl, ToggleControl } from '@wordpress/components';
+
+
 /**
  * The edit function describes the structure of your block in the context of the
  * editor. This represents what the editor will render when the block is used.
@@ -29,13 +32,33 @@ import './editor.scss';
  *
  * @return {Element} Element to render.
  */
-export default function Edit() {
+export default function Edit( { attributes, setAttributes } ) {
+    const { transitionTimer } = attributes;
 	return (
-		<p { ...useBlockProps() }>
-			{ __(
-				'Carousel Block – hello from the editor!',
-				'literati-example-carousel'
-			) }
-		</p>
+        <>
+            <InspectorControls>
+                <PanelBody title={ __('Settings', 'literati-example-carousel')}>
+                    <NumberControl
+                        label={ __(
+                            'Transition Timer (In Seconds)',
+                            'literati-example-carousel'
+                        )}
+                        min={ 1 }
+                        max={ 10 }
+                        required={ true }
+                        value={ transitionTimer || 3 }
+                        onChange={ ( value ) =>
+                            setAttributes( { transitionTimer: parseInt(value) } )
+                        }
+                    />
+                </PanelBody>
+            </InspectorControls>
+            <p { ...useBlockProps() }>
+                { __(
+                    'Carousel Block – hello from the editor!',
+                    'literati-example-carousel'
+                ) }
+            </p>
+        </>
 	);
 }

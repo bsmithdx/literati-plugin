@@ -8,8 +8,14 @@
 	"icon": "smiley",
 	"description": "Example carousel block",
 	"example": {},
+  "attributes": {
+    "transitionTimer": {
+      "type": "number"
+    }
+  },
 	"supports": {
-		"html": false
+		"html": false,
+    "multiple": false
 	},
 	"textdomain": "literati-example-carousel",
 	"editorScript": "file:./index.js",
