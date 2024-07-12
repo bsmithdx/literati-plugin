@@ -16,15 +16,19 @@ $promotions = get_posts($args);
                     <?php foreach( $promotions as $promotion) { ?>
                     <!-- add slide -->
                         <li class="splide__slide">
-                            <article class="card">
-                                <header>
-                                    <h2><?php echo get_post_meta($promotion->ID, '_literati_promotion_header', true) ?></h2>
-                                </header>
-                                <img src="<?php echo get_the_post_thumbnail_url($promotion) ?>" alt="<?php echo get_post_meta( get_post_thumbnail_id($promotion->ID), '_wp_attachment_image_alt', true); ?>">
-                                <div class="content">
-                                    <p><?php echo get_post_meta($promotion->ID, '_literati_promotion_text', true) ?></p>
+                            <article class="card-container">
+                                <div class="float-layout">
+                                    <div class="card-image">
+                                        <img src="<?php echo get_the_post_thumbnail_url($promotion) ?>" alt="<?php echo get_post_meta( get_post_thumbnail_id($promotion->ID), '_wp_attachment_image_alt', true); ?>">
+                                        <div class="card">
+                                            <div class="card-title"><?php echo get_post_meta($promotion->ID, '_literati_promotion_header', true) ?></div>
+                                            <div class="card-desc">
+                                                <?php echo get_post_meta($promotion->ID, '_literati_promotion_text', true) ?>
+                                            </div>
+                                            <a class="card-button" href="<?php echo get_permalink($promotion->ID) ?>"><?php echo get_post_meta($promotion->ID, '_literati_promotion_button', true) ?></a>
+                                        </div>
+                                    </div>
                                 </div>
-                                <a class="carousel-button" href="<?php echo get_permalink($promotion->ID) ?>"><?php echo get_post_meta($promotion->ID, '_literati_promotion_button', true) ?></a>
                             </article>
                         </li>
                       <?php

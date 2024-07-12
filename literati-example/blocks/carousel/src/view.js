@@ -39,7 +39,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
             // Grab the slide interval and convert it to an integer and milliseconds
             const interval = parseInt(splide.dataset.interval) * 1000
 
-            new Splide(splide, {type: 'loop', autoplay: true, perPage: 3, pauseOnHover: false, interval: interval}).mount()
+            new Splide(splide, {
+                type: 'loop',
+                autoplay: true,
+                pagination: false,
+                focus: "center",
+                perPage: 1,
+                perMove: 1,
+                pauseOnHover: false,
+                interval: interval,
+                padding: '20rem',
+            }).mount()
         })
     }
 })

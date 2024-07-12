@@ -55,7 +55,7 @@ export default function Edit( { attributes, setAttributes } ) {
             </InspectorControls>
             <p { ...useBlockProps() }>
                 { __(
-                    'Carousel Block – hello from the editor!',
+                    'Carousel Block',
                     'literati-example-carousel'
                 ) }
             </p>
