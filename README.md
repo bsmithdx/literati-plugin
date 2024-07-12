@@ -60,10 +60,23 @@ This will run any build tasks required for deploy
 ```make release```
 This will build and package a zip file for the plugin that can be uploaded to a WordPress instance
 
-### Brendan's Assumptions/Notes
+## Brendan's Notes
+
+### Assumptions/Decisions
 - I'm planning to adhere to the style and architecture of the existing boilerplate code as closely as possible e.g.
   - Primarily using static functions in Classes.
   - Sticking to wordpress naming conventions instead of adhering to PSR-12.
 - I'm going to add metaboxes to handle editing the custom header, text, button, and image fields on the custom promotion post type.
 - I'm assuming that the button field on a promotion is for the button text. Also that clicking on the button will take the user to the default post page for that particular promotion.
 - I'm going to use the featured image on the promotion post type to handle the required image field.
+- I decided to use an existing library (splidejs.com) to implement the carousel/slider functionality rather than having to build that from scratch. If that were something that was likely to change often or require very specific customizations then it could be worth implementing myself.
+
+### Areas To Improve
+- Customize the splide.js slider arrows to more closely match the figma design
+- Figure out styling to scale active promotion larger than next and previous promotions.
+- Customize template for single promotion post type linked to by carousel
+- I focused on implementing the working carousel on the frontend, but left the version in the block editor pretty basic. This should probably display the data for existing promotions, but without any animations.
+- Add ability to limit carousel to certain number of most recent promotions or other logic.
+- Use server side rendering on the block content to optimize not having to fetch data on every load
+- Add more unit testing coverage on the backend
+- test and add more responsive styling
